@@ -2,7 +2,7 @@
 
 	ob_start();
 	session_start();
-
+// koneksi
 	require_once "config/koneksi.php";
 
 	$query = mysqli_query($GLOBALS["___mysqli_ston"], " SELECT * FROM user WHERE username = '".$_SESSION['username']."' ");
