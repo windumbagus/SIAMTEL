@@ -1,0 +1,56 @@
+<?php
+	if (@$_GET['alert']=='success') {
+			
+  			echo " <div class='alert alert-success alert-dismissable fade in'>
+			  			<a href='index.php?page=admin/penilaian.php' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
+			    		<strong>Success </strong>Berhasil Menambahkan Nilai.
+			  		</div>";
+	}else if (@$_GET['alert']=='update') {
+
+		echo " <div class='alert alert-success alert-dismissable fade in'>
+			  			<a href='index.php?page=admin/penilaian.php' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
+			    		<strong>Success </strong> Nilai Berhasil di Update.
+			  		</div>";
+	}else if (@$_GET['alert']=='failed') {
+
+		echo " <div class='alert alert-danger alert-dismissable fade in'>
+			  			<a href='index.php?page=admin/penilaian.php' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
+			    		<strong>Failed </strong> Anda Telah Memberikan Penilaian Silahkan Lihat di Opsi View Nilai.
+			  		</div>";
+	}
+?>
+
+<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+<form class="col col-md-7">
+	<h>Silahkan Beri Penilaian :</h>
+		<table  class= "panel panel-default table table-hover">
+			<thead class="thead panel-heading-custom">
+				<tr>
+					<td>Username</td>
+					<td>Nama Lengkap</td>
+					<td>action</td>
+				</tr>
+			</thead>
+				<tbody>
+					<?php
+						require_once("config/koneksi.php");
+						$sql = mysqli_query($GLOBALS["___mysqli_ston"], " SELECT * FROM user WHERE opsi = 2");
+						while ( $data = mysqli_fetch_array($sql) ){
+					?>
+						<tr>
+							<td><?php echo $data['username']; ?></td>
+							<td><?php echo $data['nama']; ?></td>
+							<td class="thead">
+							<a class="btn btn-primary" href="index.php?page=admin/nilai.php&id=<?php echo $data['username'];?>">Nilai</a>
+							<a class="btn btn-warning" href="index.php?page=admin/edit_nilai.php&id=<?php echo $data['username'];?>">Edit Nilai</a>
+							<a class="btn btn-success" href="index.php?page=admin/view_nilai.php&id=<?php echo $data['username'];?>">View Nilai</a>
+							</td>
+						</tr>
+					<?php
+					}
+					?>
+				</tbody>
+		</table>
+</form>
+    <script src="assets/js/jquery-3.2.1.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>

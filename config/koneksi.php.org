@@ -1,0 +1,17 @@
+ <?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$db_name = "sistem_absensi";
+
+
+// Create connection
+$conn = mysql_connect($servername, $username, $password);
+
+if($conn > 0) {
+	$db = mysql_select_db($db_name);
+} else {
+	echo "Koneksi Gagal!";
+}
+
+?>
